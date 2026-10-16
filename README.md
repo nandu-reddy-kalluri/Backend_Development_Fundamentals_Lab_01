@@ -13,8 +13,10 @@
 
 ## Live Link
 
-- **Status:** Not deployed yet.
-- The application is currently being developed and tested locally. The public deployment URL will be added here after successful deployment. If deployment is not possible, the reason and Postman screenshots for all endpoints will be documented here, as required by the lab guidelines.
+- **Deployment URL:** [https://backend-development-fundamentals-lab-01.onrender.com](https://backend-development-fundamentals-lab-01.onrender.com)
+- **Deployment Platform:** Render (Web Service)
+- **Deployment Status:** Live & Verified
+
 
 ---
 
