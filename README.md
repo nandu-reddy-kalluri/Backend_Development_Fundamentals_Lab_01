@@ -6,227 +6,174 @@
 - **Registration Number:** 252U1R9129
 - **Section:** CSE GEN AI (2C)
 - **Course:** Backend Development Fundamentals
-- **Lab Title:** Lab 1: Node.js and Express Server
-- **GitHub Repository:** [https://github.com/nandu-reddy-kalluri/Backend_Development_Fundamentals_Lab_01](https://github.com/nandu-reddy-kalluri/Backend_Development_Fundamentals_Lab_01)
+- **Academic Term:** Year II – Term II
+- **Faculty:** Joel Prashanth D
 
 ---
 
 ## Live Link
 
-- **Deployment URL:** Not applicable (local development environment)
+- **Status:** Not deployed yet.
+- The application is currently being developed and tested locally. The public deployment URL will be added here after successful deployment. If deployment is not possible, the reason and Postman screenshots for all endpoints will be documented here, as required by the lab guidelines.
 
 ---
 
 ## Objective
 
-To set up a Node.js project, understand `package.json` configuration, create a basic HTTP server using Node.js's built-in `http` module, and build a modular Express.js web server with distinct routes, dynamic responses, JSON formatting, and appropriate HTTP status codes.
+To set up a Node.js project and build a web server using the built-in HTTP module, then implement the same functionality using Express.js.
 
 ---
 
 ## Technologies Used
 
-- **Node.js** (v24.x) - JavaScript runtime environment
-- **Express.js** (v5.x) - Fast, minimalist web framework for Node.js
-- **JavaScript (CommonJS)** - Core programming language
-- **npm** - Node package manager
-- **Git & GitHub** - Version control and repository hosting
+- Node.js
+- Express.js
+- JavaScript
+- npm
+- Git and GitHub
 
 ---
 
 ## Project Structure
 
 ```text
-Backend_Development_Fundamentals_Lab_01/
-├── screenshots/
-│   ├── home.png
-│   ├── about.png
-│   ├── time.png
-│   ├── not-found.png
-│   └── page-not-f.png
-├── .gitignore
+lab-01/
+├── server.js
+├── server-http.js
 ├── package.json
 ├── package-lock.json
 ├── README.md
-├── server-http.js
-└── server.js
+├── .gitignore
+└── screenshots/
+    ├── home.png
+    ├── about.png
+    ├── time.png
+    ├── not-found.png
+    ├── terminal-server-running.png
+    └── plain-http-server.png
 ```
 
 ---
 
 ## Prerequisites
 
-- Node.js (version 18 or above recommended)
-- npm (Node Package Manager)
-- A modern web browser or API testing tool (e.g., Postman, curl, or Edge/Chrome)
-- Git installed on your system
+- Node.js and npm installed.
+- A web browser.
+- Git installed for version control.
 
 ---
 
-## Installation Instructions
+## Installation
 
-1. Clone the repository:
+Open a terminal inside the project directory and run:
 
-   ```bash
-   git clone https://github.com/nandu-reddy-kalluri/Backend_Development_Fundamentals_Lab_01.git
-   ```
+```bash
+npm install
+```
 
-2. Navigate into the project folder:
-
-   ```bash
-   cd Backend_Development_Fundamentals_Lab_01
-   ```
-
-3. Install project dependencies:
-
-   ```bash
-   npm install
-   ```
+This installs the dependencies listed in `package.json`.
 
 ---
 
-## Running the Servers
+## How to Run
 
-> **Important:** Both the plain Node.js HTTP server and the Express server listen on port `3000` by default. Only one server should use port `3000` at a time. Stop the currently running server (`Ctrl + C`) before starting the other.
+### 1. Plain Node.js HTTP Server
 
-### 1. Plain Node.js HTTP Server (`server-http.js`)
-
-To run the server implemented with Node.js's built-in `http` module:
-
+Run:
 ```bash
 node server-http.js
 ```
 
-**Output:**
-```text
-HTTP server running at http://localhost:3000
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser. The page will display:
+Open the following URL in your browser:
+[http://localhost:3000](http://localhost:3000/)
+
+**Expected response:**
 ```text
 Hello
 ```
 
-### 2. Express Server (`server.js`)
+### 2. Express Server
 
-To run the Express web application:
+> **Note:** Stop the plain HTTP server using `Ctrl + C` before starting the Express server. Both servers use port `3000`, so run only one at a time.
 
+Run:
 ```bash
 npm start
 ```
 
-*(Alternatively: `node server.js`)*
-
-**Output:**
-```text
-Express server running at http://localhost:3000
-```
+The server should start at:
+[http://localhost:3000](http://localhost:3000/)
 
 ---
 
-## Endpoint Documentation
+## Endpoints
 
-| Method | Endpoint | Description | Expected Status |
+| Method | Path | Description | Expected Status |
 |---|---|---|---|
-| GET | `/` | Welcome message | 200 |
-| GET | `/about` | Student information | 200 |
-| GET | `/time` | Current date and time | 200 |
-| GET | `/unknown` | Not found response | 404 |
+| GET | `/` | Returns the welcome message | 200 OK |
+| GET | `/about` | Returns student name, registration number, and section as JSON | 200 OK |
+| GET | `/time` | Returns the current date and time | 200 OK |
+| GET | `/unknown` | Returns a not-found message for an undefined route | 404 Not Found |
 
----
-
-## Example Requests and Responses
-
-### 1. Home Route (`GET /`)
-- **URL:** `http://localhost:3000/`
-- **Status Code:** `200 OK`
-- **Response (text/html):**
-  ```text
-  Welcome to my Lab 1 server!
-  ```
-
-### 2. About Route (`GET /about`)
-- **URL:** `http://localhost:3000/about`
-- **Status Code:** `200 OK`
-- **Response (application/json):**
-  ```json
-  {
-    "name": "K. Nanda Kishore Reddy",
-    "registrationNumber": "252U1R9129",
-    "section": "CSE GEN AI (2C)"
-  }
-  ```
-
-### 3. Time Route (`GET /time`)
-- **URL:** `http://localhost:3000/time`
-- **Status Code:** `200 OK`
-- **Response (application/json):**
-  ```json
-  {
-    "currentDateTime": "2026-10-16T12:14:08.632Z"
-  }
-  ```
-  *(Timestamp is dynamically generated on each request using `new Date()`)*
-
-### 4. Unknown Route (`GET /unknown`)
-- **URL:** `http://localhost:3000/unknown` (or any undefined route)
-- **Status Code:** `404 Not Found`
-- **Response (text/html):**
-  ```text
-  404 - Page Not Found
-  ```
-
----
-
-## HTTP Status Codes
-
-- **200 OK:** Standard response for successful HTTP requests. Returned for `/`, `/about`, and `/time`.
-- **404 Not Found:** Indicates that the requested resource or route does not exist. Returned for all undefined routes.
+*(Replace `localhost:3000` with the deployed base URL after deployment.)*
 
 ---
 
 ## Screenshots
 
-### Home Endpoint (`GET /`)
+The following screenshots document the actual output of the application:
+
+### 1. Home Endpoint
 ![Home Endpoint](screenshots/home.png)
 
-### About Endpoint (`GET /about`)
+### 2. About Endpoint
 ![About Endpoint](screenshots/about.png)
 
-### Time Endpoint (`GET /time`)
-![Time Endpoint](screenshots/time.png)
+### 3. Current Date and Time
+![Current Date and Time](screenshots/time.png)
 
-### 404 Not Found (`GET /unknown`)
-![404 Not Found](screenshots/not-found.png)
+### 4. Unknown Route — 404
+![Unknown Route — 404](screenshots/not-found.png)
+
+### 5. Express Server Running
+*(Documented during local execution with `npm start`)*
+
+### 6. Plain Node.js HTTP Server
+*(Documented during local execution with `node server-http.js`)*
 
 ---
 
-## Viva Questions & Answers
+## Package Files
 
-### 1. What is the difference between `package.json` and `node_modules`?
-- **`package.json`:** A lightweight manifest file that contains metadata about the project, scripts (`start`, `test`), authors, and lists dependency package names and versions. It is committed to version control.
-- **`node_modules`:** A physical directory on disk containing the actual downloaded code and binaries of all installed packages and their transitive dependencies. It should never be committed to Git due to its large size.
-
-### 2. What does `app.listen()` do?
-`app.listen()` binds and listens for connections on the specified host and port (e.g., port `3000`). It starts the underlying Node.js HTTP server and enters the event loop to receive incoming client requests.
-
-### 3. What do `request` and `response` represent?
-- **`request` (`req`):** An object representing the incoming HTTP request from the client. It contains request headers, HTTP method, URL path, query parameters, route parameters, and body data.
-- **`response` (`res`):** An object used to construct and send the HTTP response back to the client, including the HTTP status code (e.g., `200`, `404`), headers, and the response body (`.send()`, `.json()`).
+- **`package.json`:** Contains project metadata, scripts, and dependency declarations.
+- **`package-lock.json`:** Records the resolved dependency versions.
+- **`node_modules/`:** Contains installed packages and must not be committed to GitHub.
 
 ---
 
 ## Problems Faced and Solutions
 
-1. **Port Collision (EADDRINUSE):**
-   - *Problem:* Attempting to run `server-http.js` and `server.js` simultaneously resulted in a port conflict on port `3000`.
-   - *Solution:* Ensured that one server is terminated (`Ctrl + C`) before starting the other.
-2. **Ignoring `node_modules` in Git:**
-   - *Problem:* `node_modules` could easily be staged into Git if not explicitly ignored.
-   - *Solution:* Created a comprehensive `.gitignore` file including `node_modules/`, `.env`, and OS/log files before staging any changes.
+- **Port already in use:** Stopped the other server before starting the current server when running both on port `3000`.
+- **Express not installed:** Installed it using `npm install express`.
+- **Incorrect route / 404 handling:** Added an undefined route handler (`app.use`) at the end of the middleware chain to return 404 with a meaningful message.
 
 ---
 
-## Git and Repository Configuration
+## Security and Repository Practices
 
-- **Remote URL:** `https://github.com/nandu-reddy-kalluri/Backend_Development_Fundamentals_Lab_01.git`
-- **Branch:** `main`
-- **Clean Git Tracking:** All source files, configuration, screenshots, and documentation are properly version-controlled with `.gitignore` safeguarding credentials and dependencies.
+- Do not commit `.env` files or private credentials.
+- Do not commit `node_modules/`.
+- Use meaningful Git commit messages.
+- Verify the HTTP status codes returned by each route.
+
+---
+
+## GitHub Repository
+
+[Backend Development Fundamentals — Lab 1](https://github.com/nandu-reddy-kalluri/Backend_Development_Fundamentals_Lab_01)
+
+---
+
+## Conclusion
+
+This lab demonstrates how to create a basic HTTP server using Node.js and implement routes using Express.js. The application is intended to return a welcome message, student information, the current date and time, and a 404 response for unknown routes.
